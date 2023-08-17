@@ -7,37 +7,75 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     let newPlayerSelection = playerSelection.toLowerCase();
     if (newPlayerSelection === computerSelection) {
-        return "It's a tie!";
+        return "tie";
     }
 
     else if (newPlayerSelection === "rock") {
         if (computerSelection === "paper") {
-            return "Computer wins! Paper beats rock.";
+            return "computer";
         }
         else {
-            return "You win! Rock beats scissor.";
+            return "player";
         }
     }
 
     else if (newPlayerSelection === "paper") {
         if (computerSelection === "scissor") {
-            return "Computer wins! Scissor beats paper.";
+            return "computer";
         }
         else {
-            return "You win! Paper beats rock.";
+            return "player";
         }
     }
 
     else {
         if (computerSelection === "rock") {
-            return "Computer wins! Rock beats scissor.";
+            return "computer";
         }
         else {
-            return "You win! Scissor beats paper.";
+            return "player";
         }
     }
 }
 
-const playerSelection = 'scissor';
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+
+function game() {
+    let playerWins = 0;
+    let computerWins = 0;
+    while (playerWins < 5 && computerWins < 5) {
+        let playerSelection = prompt("Choose rock, paper, or scissor.").toLowerCase();
+        let pass = false;
+        if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissor") {
+            pass = true;
+        }
+        while (!pass) {
+            playerSelection = prompt("Invalid input. Please enter rock, paper, or scissor.").toLowerCase();
+            if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissor") {
+                pass = true;
+            }
+        }
+        let computerSelection = getComputerChoice();
+        let result = playRound(playerSelection, computerSelection);
+        if (result === "player") {
+            playerWins++;
+            console.log("You win! " + playerSelection + " beats " + computerSelection + ".");
+            console.log("Player: " + playerWins);
+            console.log("Computer: " + computerWins);
+        }
+        else if (result === "computer") {
+            computerWins++;
+            console.log("Computer wins! " + computerSelection + " beats " + playerSelection + ".");
+            console.log("Player: " + playerWins);
+            console.log("Computer: " + computerWins);
+        }
+        else {
+
+        }
+    }
+    if (playerWins === 5) {
+        console.log("You win!");
+    }
+    else {
+        console.log("Computer wins!");
+    }
+}
