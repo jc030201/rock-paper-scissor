@@ -60,15 +60,9 @@ function game() {
         let result = playRound(playerSelection, computerSelection);
         if (result === "player") {
             playerWins++;
-            console.log("You win! " + playerSelection + " beats " + computerSelection + ".");
-            console.log("Player: " + playerWins);
-            console.log("Computer: " + computerWins);
         }
         else if (result === "computer") {
             computerWins++;
-            console.log("Computer wins! " + computerSelection + " beats " + playerSelection + ".");
-            console.log("Player: " + playerWins);
-            console.log("Computer: " + computerWins);
         }
         else {
 
