@@ -1,3 +1,5 @@
+// Game
+
 function getComputerChoice() {
     let choices = ["rock", "paper", "scissor"];
     let computerChoice = Math.floor(Math.random() * choices.length);
@@ -79,3 +81,6 @@ function game() {
         console.log("Computer wins!");
     }
 }
+
+// UI
+
