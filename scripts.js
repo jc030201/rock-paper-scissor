@@ -78,3 +78,6 @@ function game() {
 
 // UI
 
+const playerRock = document.getElementById(playerRock);
+const playerPaper = document.getElementById(playerPaper);
+const playerScissor = document.getElementById(playerScissor);
