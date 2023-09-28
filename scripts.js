@@ -1,3 +1,8 @@
+// Global Variables
+
+let playerScore = 0;
+let computerScore = 0;
+
 // Game
 
 function getComputerChoice() {
@@ -12,35 +17,28 @@ function playRound(playerSelection, computerSelection) {
         return "tie";
     }
 
-    else if (newPlayerSelection === "rock") {
-        if (computerSelection === "paper") {
-            return "computer";
-        }
-        else {
-            return "player";
-        }
+    // player win outcomes
+    if (
+        (playerSelection === "rock" && computerSelection === "scissor") ||
+        (playerSelection === "paper" && computerSelection === "rock") ||
+        (playerSelection === "scissor" && computerSelection === "paper")
+    ) {
+        playerScore++;
     }
 
-    else if (newPlayerSelection === "paper") {
-        if (computerSelection === "scissor") {
-            return "computer";
-        }
-        else {
-            return "player";
-        }
+    // computer win outcomes
+    if (
+        (playerSelection === "rock" && computerSelection === "paper") ||
+        (playerSelection === "paper" && computerSelection === "scissor") ||
+        (playerSelection === "scissor" && computerSelection === "rock")
+    ) {
+        computerScore++;
     }
 
-    else {
-        if (computerSelection === "rock") {
-            return "computer";
-        }
-        else {
-            return "player";
-        }
-    }
+    updateScoreboard();
 }
 
-
+/*
 function game() {
     let playerWins = 0;
     let computerWins = 0;
@@ -75,9 +73,27 @@ function game() {
         console.log("Computer wins!");
     }
 }
+*/
 
 // UI
 
-const playerRock = document.getElementById(playerRock);
-const playerPaper = document.getElementById(playerPaper);
-const playerScissor = document.getElementById(playerScissor);
+const rockButton = document.getElementById("rockButton");
+const paperButton = document.getElementById("paperButton");
+const scissorButton = document.getElementById("scissorButton");
+const playerScoreParameter = document.getElementById("playerScore");
+const computerScoreParameter = document.getElementById("computerScore");
+
+rockButton.addEventListener('click', () => handleClick("rock"));
+paperButton.addEventListener('click', () => handleClick("paper"));
+scissorButton.addEventListener('click', () => handleClick("scissor"));
+
+
+function handleClick(playerSelection) {
+    let computerSelection = getComputerChoice();
+    playRound(playerSelection, computerSelection);
+}
+
+function updateScoreboard() {
+    playerScoreParameter.textContent = `${playerScore}`;
+    computerScoreParameter.textContent = `${computerScore}`;
+}
